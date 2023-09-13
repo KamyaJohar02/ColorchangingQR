@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ColorSelector from './colorselector';
+import './MyQRCode.css';
+import MyQRCode from './MyQRCode';
 
 function App() {
+  const [selectedColor, setSelectedColor] = useState('#000');
+
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="QR_box">
+      <ColorSelector onColorChange={handleColorChange} />
+
+      <div className="qr-container">
+        <MyQRCode
+          linkedinURL="https://in.linkedin.com/in/kamyajohar"
+          selectedColor={selectedColor}
+          logoURL="https://shorturl.at/cjAQY"
+          eyeRadius={8}
+        />
+        <div className="circular-image-container">
+          <img
+            src="https://shorturl.at/cjAQY"
+            alt="Logo"
+            className="circular-image"
+          />
+        </div>
+      </div>
     </div>
   );
 }
